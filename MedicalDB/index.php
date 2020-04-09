@@ -11,7 +11,7 @@
 
 <body>
 
-<a href="appointments.php">Appointments</a>
+<a href="exist_pt.php">Login</a>
 
 </body>
 </html>

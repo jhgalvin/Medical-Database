@@ -1,12 +1,22 @@
-<!DOCTYPE html>
-<html>
-
- <link rel="stylesheet" type="text/css" href="style.css" />
-
 <?php
-	include_once 'db_connection.php';
+    include_once "includes/dbh.php";
+    include_once "includes/session_check.php";
 ?>
 
-<h1> <center> UH Medical Clinic </center> </h1>
+<html>
+<head>
+<title>Patient Portal</title>
+</head>
 
-</html>
+<body>
+
+<?php
+    echo "Welcome ".$_SESSION['Name']." !";
+?>
+
+<p><a href='patient_info.php'>Check your medical records</a></p>
+<p><a href='patient_prescript.php'>Check your prescriptions </a></p>
+<p>Schedule an appointment </p> 
+
+</body>
+
