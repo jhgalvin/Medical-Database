@@ -15,9 +15,9 @@ Do you want to schedule with a general practitioner or a specialist?
 <input type="radio" id="gp" value=0 name="app_choice">
 <label for="gp">General Practitioner</label><br>
 <input type="radio" id="specialist" value=1 name="app_choice">
-<label for="specialist">Specialist</label><br>
+<label for="specialist">Specialist</label><br><br>
 <input type="submit" name="submit" value="submit">
-</form>
-
+</form> 
+<a href='patient_portal.php'>Return to patient portal</a>
 </body>
 </html>

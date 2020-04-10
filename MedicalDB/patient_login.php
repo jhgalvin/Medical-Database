@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
- 
+<head>
+	<title> Patient Login </title>
+</head>
 <h1> <center> UH Medical Clinic </center> </h1>   
 
 <center><form action="patient_exist_process.php" method="POST">

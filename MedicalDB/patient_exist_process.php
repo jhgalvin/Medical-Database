@@ -22,11 +22,12 @@
 		    $sql_doc = mysqli_query($conn, "SELECT * FROM Doctors WHERE Specialist='No' AND NPI IN (SELECT NPI FROM Doctor_patient WHERE PID='".$_POST['PID']."');") or die(mysqli_error($conn));
 		    $doc = mysqli_fetch_assoc($sql_doc);
 
-		    if(mysqli_num_rows($doc) == 0) {
+		    if(mysqli_num_rows($sql_doc) == 0) {
 		    	$_SESSION['Has_GP'] = FALSE;
 		    } else {
 		    	$_SESSION['Has_GP'] = TRUE;
-		    	$_SESSION['GP'] = $doc['Name'];
+		    	$_SESSION['GP_name'] = $doc['Name'];
+		    	$_SESSION['GP_ID'] = $doc['NPI'];
 		    }
 
 
