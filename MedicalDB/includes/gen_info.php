@@ -61,7 +61,7 @@
 		//Ethnicity
 		echo "<div class='column'>";
 		echo "<h2> Ethnicity </h2>";
-		echo $demo['Ethinicity']."</div>";
+		echo $demo['Ethnicity']."</div>";
 
 		//Marital Status
 		echo "<div class='column'>";

@@ -5,6 +5,7 @@ USE meddb;
 CREATE TABLE Doctors (
 	NPI BIGINT NOT NULL UNIQUE,
 	Name VARCHAR(80) NOT NULL,
+    Password VARCHAR(80) NOT NULL,
 	Work_phone VARCHAR(15) NOT NULL,
 	Fax VARCHAR(15) NULL,
 	Email VARCHAR(80) NOT NULL,
@@ -12,12 +13,12 @@ CREATE TABLE Doctors (
 	Specialization VARCHAR(80) NOT NULL,
 	PRIMARY KEY (NPI)
 );
-INSERT INTO Doctors VALUES (1234567890, 'James Jones', '(713) 456-1232', '(713) 446-7888', 'jjones@clinic.com', 'Yes', 'Orthopedic Surgeon');
-INSERT INTO Doctors VALUES (1342523141, 'Samantha Levi', '(713) 342-1232', NULL, 'slevi@clinic.com', 'No', 'General Practitioner');
-INSERT INTO Doctors VALUES (6734223145, 'Eugene Gray', '(713) 324-5887', NULL, 'egray@clinic.com', 'Yes', 'Oncologist');
-INSERT INTO Doctors VALUES (5882941572, 'Kara Williams', '(512) 234-5568', '(512) 354-6650', 'kwilliams@clinic.com', 'Yes', 'Dermatologist');
-INSERT INTO Doctors VALUES (3251567654, 'Ada Lovejoy', '(512) 112-2425', NULL , 'alovejoy@clinic.com', 'No', 'General Practitioner');
-INSERT INTO Doctors VALUES (2196832962, 'Preston Gross', '(713) 233-0098', '(713) 443-3456', 'pgross@clinic.com', 'Yes', 'Endocrinologist');
+INSERT INTO Doctors VALUES (1234567890, 'James Jones', 'password', '(713) 456-1232', '(713) 446-7888', 'jjones@clinic.com', 'Yes', 'Orthopedic Surgeon');
+INSERT INTO Doctors VALUES (1342523141, 'Samantha Levi', 'password', '(713) 342-1232', NULL, 'slevi@clinic.com', 'No', 'General Practitioner');
+INSERT INTO Doctors VALUES (6734223145, 'Eugene Gray', 'password', '(713) 324-5887', NULL, 'egray@clinic.com', 'Yes', 'Oncologist');
+INSERT INTO Doctors VALUES (5882941572, 'Kara Williams', 'password', '(512) 234-5568', '(512) 354-6650', 'kwilliams@clinic.com', 'Yes', 'Dermatologist');
+INSERT INTO Doctors VALUES (3251567654, 'Ada Lovejoy', 'password', '(512) 112-2425', NULL , 'alovejoy@clinic.com', 'No', 'General Practitioner');
+INSERT INTO Doctors VALUES (2196832962, 'Preston Gross', 'password', '(713) 233-0098', '(713) 443-3456', 'pgross@clinic.com', 'Yes', 'Endocrinologist');
 
 
 CREATE TABLE Demographics (
@@ -26,7 +27,7 @@ CREATE TABLE Demographics (
     Age INT NOT NULL,
     Date_of_birth DATE NOT NULL,
     Sex ENUM('M', 'F', 'Other') NOT NULL,
-    Ethinicity ENUM('Asian/Pacific Islander', 'African-American', 'Native American', 'White', 'Hispanic', 'Other') NOT NULL,
+    Ethnicity ENUM('Asian/Pacific Islander', 'African-American', 'Native American', 'White', 'Hispanic', 'Other') NOT NULL,
     Marital_status ENUM('Single', 'Married', 'Widowed', 'Divorced', 'Separated') NOT NULL,
     Home_phone VARCHAR(15) NOT NULL,
     Cell_phone VARCHAR(15) NULL,
@@ -69,24 +70,26 @@ INSERT INTO Family_history VALUES (NULL, 'Grandfather had 4 strokes');
 
 CREATE TABLE Nurses (
 	NID INT NOT NULL UNIQUE,
+    Password VARCHAR(80) NOT NULL,
     Name VARCHAR(80) NOT NULL,
     Job_description VARCHAR(225) NULL,
     PRIMARY KEY (NID)
 );
-INSERT INTO Nurses VALUES (34534, 'Samuel Norse', 'Knows how to do IVs');
-INSERT INTO Nurses VALUES (12456, 'Amanda Kubrick', NULL);
-INSERT INTO Nurses VALUES (15233, 'Justin Gruber', NULL);
-INSERT INTO Nurses VALUES (87680, 'Caitlin Gomez', 'First year nurse');
-INSERT INTO Nurses VALUES (24933, 'Ellen Grant', 'Twenty years of experience');
+INSERT INTO Nurses VALUES (34534, 'password', 'Samuel Norse', 'Knows how to do IVs');
+INSERT INTO Nurses VALUES (12456, 'password', 'Amanda Kubrick', NULL);
+INSERT INTO Nurses VALUES (15233, 'password', 'Justin Gruber', NULL);
+INSERT INTO Nurses VALUES (87680, 'password', 'Caitlin Gomez', 'First year nurse');
+INSERT INTO Nurses VALUES (24933, 'password', 'Ellen Grant', 'Twenty years of experience');
 
 CREATE TABLE Patients (
 	PID INT NOT NULL UNIQUE,
+    	Password VARCHAR(80) NOT NULL,
 	First_Name VARCHAR(80) NOT NULL,
 	Last_Name VARCHAR(80) NOT NULL,
 	Last_4_SSN INT NULL,
     Demographics_ID INT NOT NULL,
-    Med_Hist_ID INT NULL,
-    Fam_Hist_ID INT NULL,
+    Med_Hist_ID INT NOT NULL,
+    Fam_Hist_ID INT NOT NULL,
     NID INT NULL,
 	PRIMARY KEY (PID),
     FOREIGN KEY (Demographics_ID) REFERENCES Demographics(Demo_ID) ON DELETE CASCADE,
@@ -94,12 +97,12 @@ CREATE TABLE Patients (
     FOREIGN KEY (Fam_Hist_ID) REFERENCES Family_history(Fam_Hist_ID) ON DELETE CASCADE,
 	FOREIGN KEY (NID) REFERENCES Nurses(NID) ON DELETE CASCADE
 );
-INSERT INTO Patients VALUES (123124, 'Hou',  'Hsiao-hsien', 2314, 1001, 301, NULL, 34534);
-INSERT INTO Patients VALUES (125236, 'Chantal', 'Akerman', 8760, 1002, NULL, 501, 87680);
-INSERT INTO Patients VALUES (234622, 'Lucretia', 'Martel', 4534, 1003, NULL, NULL, 12456);
-INSERT INTO Patients VALUES (558998, 'Jonathan', 'Glazer', 2603, 1004, 302, 502, 34534);
-INSERT INTO Patients VALUES (325543, 'Aleksei', 'German', 8799, 1005, NULL, 503, 12456);
-INSERT INTO Patients VALUES (098664, 'Takeshi', 'Kitano', 9454, 1006, 303, 504, 24933);
+INSERT INTO Patients VALUES (123124, 'password', 'Hou',  'Hsiao-hsien', 2314, 1001, 301, 502, 34534);
+INSERT INTO Patients VALUES (125236, 'password', 'Chantal', 'Akerman', 8760, 1002, 301, 501, 87680);
+INSERT INTO Patients VALUES (234622, 'password', 'Lucretia', 'Martel', 4534, 1003, 303, 503, 12456);
+INSERT INTO Patients VALUES (558998, 'password', 'Jonathan', 'Glazer', 2603, 1004, 302, 502, 34534);
+INSERT INTO Patients VALUES (325543, 'password', 'Aleksei', 'German', 8799, 1005, 302, 503, 12456);
+INSERT INTO Patients VALUES (098664, 'password', 'Takeshi', 'Kitano', 9454, 1006, 303, 504, 24933);
 
 CREATE TABLE Doctor_patient (
 	PID INT NOT NULL,
@@ -131,6 +134,20 @@ CREATE TABLE Prescriptions (
     FOREIGN KEY (Patient) REFERENCES Patients(PID) ON DELETE CASCADE
 );
 ALTER TABLE Prescriptions AUTO_INCREMENT=701;
+
+DROP TRIGGER IF EXISTS `duplicate_Script`;
+DELIMITER $$
+CREATE TRIGGER `duplicate_Script` BEFORE INSERT ON `prescriptions` FOR EACH ROW BEGIN
+	IF(EXISTS(SELECT 1 from Prescriptions WHERE
+		Prescript_Name = NEW.Prescript_Name AND
+		Dosage = NEW.Dosage AND
+		Prescribing_doc = NEW.Prescribing_doc AND
+		Patient = NEW.Patient)) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Patient is already taking medication.';
+	END IF;
+END $$
+DELIMITER ;
+
 INSERT INTO Prescriptions VALUES (NULL, 'Novalog', '20 ml per every other day', 'Y', 3251567654, 123124);
 INSERT INTO Prescriptions VALUES (NULL, 'Amoxicillin', '2 pills every day', 'N', 3251567654, 234622);
 INSERT INTO Prescriptions VALUES (NULL, 'Lung Steroid', '1 pill every day', 'N', 1342523141, 325543);
@@ -177,6 +194,19 @@ CREATE TABLE Appointments (
     FOREIGN KEY (Clinic_ID) REFERENCES Clinics(Clinic_ID) ON DELETE CASCADE
 );
 ALTER TABLE Appointments AUTO_INCREMENT=100001;
+
+DROP TRIGGER IF EXISTS `duplicateAppointment`;
+DELIMITER $$
+CREATE TRIGGER `duplicateAppointment` BEFORE INSERT ON `appointments` FOR EACH ROW BEGIN
+	IF(EXISTS(SELECT 1 FROM Appointments WHERE
+		Appointment_time = NEW.Appointment_time AND
+		Doctor_ID = NEW.Doctor_ID AND
+		Patient_ID = NEW.Patient_ID)) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Appointment already exists on this data and time.';
+	END IF;
+END $$
+DELIMITER ;
+
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-01-01 10:00:00', 3251567654, 123124, 901);
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-03-24 9:30:00', 2196832962, 125236, 901);
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-02-28 3:30:00', 6734223145, 325543, 902);

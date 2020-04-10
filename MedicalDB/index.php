@@ -11,7 +11,7 @@
 
 <body>
 
-<a href="exist_pt.php">Login</a>
+<a href="patient_login.php">Login</a>
 
 </body>
 </html>

@@ -16,7 +16,7 @@
 
 <p><a href='patient_info.php'>Check your medical records</a></p>
 <p><a href='patient_prescript.php'>Check your prescriptions </a></p>
-<p>Schedule an appointment </p> 
+<p><a href='appointments_portal.php'>Schedule an appointment</a></p>
 
 </body>
 
