@@ -13,10 +13,6 @@
 
 	if(isset($_POST['submit'])) {
 
-		if($_SESSION['Has_GP']==TRUE) {
-			$_POST['Doctor'] = $_SESSION['GP_ID'];
-		}
-
 		$datetime = substr($_POST['Time'],0,10).' '.substr($_POST['Time'],11).':00';
 		
 		$sql_doc = mysqli_query($conn, "SELECT * FROM Doctors WHERE NPI=".$_POST['Doctor'].";");

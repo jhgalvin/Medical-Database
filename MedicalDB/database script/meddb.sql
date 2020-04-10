@@ -211,3 +211,13 @@ INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-01-01 10:00:00', 3251567654,
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-03-24 9:30:00', 2196832962, 125236, 901);
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-02-28 3:30:00', 6734223145, 325543, 902);
 INSERT INTO Appointments VALUES (NULL, 'Yes', '2020-01-01 08:00:00', 1234567890, 123124, 901);
+
+CREATE TABLE Actions (
+	Action_ID INT NOT NULL AUTO_INCREMENT,
+	User_Type ENUM('Admin','Patient','Nurse','Doctor') NOT NULL,
+	User_ID INT NOT NULL,
+	Action_Type ENUM('Logged In', 'Logged Out', 'Created New Patient', 'Modified Record', 'Scheduled Appointment', 'Prescription Written') NOT NULL,
+	Record_Modified_ID INT NULL,
+	Action_Time DATETIME NOT NULL,
+	PRIMARY KEY (Action_ID)
+);
