@@ -4,14 +4,14 @@
 	include_once 'connection_index.php';
 
 	// Now we check if the data from the login form was submitted, isset() will check if the data exists.
-	if ( !isset($_POST['username'], $_POST['password']) ){
+	if ( !isset($_POST['NPI'], $_POST['password']) ){
 		// Could not get the data that should have been sent.
 		exit('Please fill both the username and password fields!');
 	}
 
-	if ($stmt = $conn -> prepare('SELECT NPI, Doc_Pass FROM doctors WHERE Doc_User = ?')){
+	if ($stmt = $conn -> prepare('SELECT NPI, Password FROM doctors WHERE NPI = ?')){
 		// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-		$stmt->bind_param('s', $_POST['username']);
+		$stmt->bind_param('i', $_POST['NPI']);
 		$stmt->execute();
 		
 		// Store the result so we can check if the account exists in the database.
@@ -28,8 +28,8 @@
 				// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
 				session_regenerate_id();
 				$_SESSION['loggedin'] = TRUE;
-				$_SESSION['name'] = $_POST['username'];
-				$_SESSION['username'] = $id;
+				$_SESSION['name'] = $_POST['Name'];
+				$_SESSION['NPI'] = $id;
 				header('Location: doc_home.php');
 			}else{
 			echo 'Incorrect password!';
